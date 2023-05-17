@@ -1,0 +1,98 @@
+li {
+  list-style: none;
+}
+h1,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.userItem {
+  width: 380px;
+  height: 460px;
+  background: linear-gradient(90deg, #471ca9 0%, #5736a3 69.1%, #4b2a99 100%);
+  border-radius: 20px;
+  position: relative;
+}
+
+.userItem:hover .logo {
+  transform: rotateY(360deg);
+}
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  transition: transform 1s;
+}
+
+.bgCard {
+  position: absolute;
+  top: 28px;
+  left: 36px;
+}
+
+.centerLine {
+  position: absolute;
+  top: 214px;
+  left: 0;
+}
+
+.avatar {
+  position: absolute;
+  top: 178px;
+  left: 150px;
+}
+
+.userInfo {
+  position: absolute;
+  top: 264px;
+  left: 95px;
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  font-family: Montserrat;
+  font-size: 22px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #373737;
+  margin-bottom: 10px;
+}
+
+.userPhoto {
+  width: 67px;
+  height: 67px;
+  border-radius: 50%;
+  position: absolute;
+  top: 186px;
+  left: 162px;
+}
+
+.userRating {
+  font-family: Montserrat;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #ebd8ff;
+  margin-bottom: 16px;
+}
+
+.followBtn {
+  width: 196px;
+  height: 50px;
+  border-radius: 10px;
+  margin-top: 10px;
+  /* outline: none;
+  border: none; */
+  background-color: #ebd8ff;
+  font-family: Montserrat;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #373737;
+}
+
+/* .followBtn:hover {
+  border: 3px solid lime;
+} */
