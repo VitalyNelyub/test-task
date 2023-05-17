@@ -4,10 +4,11 @@ import goit from './Images/Logo.png';
 import centerLine from './Images/Rectangle.png';
 import avatar from './Images/Boy.png';
 import bgCard from './Images/bg-card.png';
+import { nanoid } from 'nanoid';
 
 export default function UserItem({ users }) {
   return users.map(user => (
-    <li key={user.id} className={css.userItem}>
+    <li key={nanoid()} className={css.userItem}>
       <img src={goit} className={css.logo} />
       <img src={centerLine} className={css.centerLine} />
       <img src={avatar} className={css.avatar} />

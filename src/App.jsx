@@ -10,12 +10,19 @@ function App() {
   // console.log(users.length);
 
   useEffect(() => {
-    if (users.length === 0) {
-      getUsers(page).then(data => setUsers(data));
+    if (page) {
+      if (page === 1) {
+        getUsers(page).then(data => setUsers(data));
+      } else {
+        console.log('fetch');
+        getUsers(page).then(data =>
+          setUsers(prevUsers => [...prevUsers, ...data])
+        );
+      }
     } else {
       console.log('exit');
     }
-  }, [page, users.length]);
+  }, [page]);
   // console.log(users);
 
   const loadMore = () => {
