@@ -14,7 +14,7 @@ function App() {
       if (page === 1) {
         getUsers(page).then(data => setUsers(data));
       } else {
-        console.log('fetch');
+        // console.log('fetch');
         getUsers(page).then(data =>
           setUsers(prevUsers => [...prevUsers, ...data])
         );
@@ -28,7 +28,7 @@ function App() {
   const loadMore = () => {
     // console.log(e);
     setPage(prev => prev + 1);
-    console.log(page);
+    // console.log(page);
   };
   return (
     <>

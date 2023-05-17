@@ -6,7 +6,7 @@ export default function UsersGallery({ users }) {
     
 
 
-  console.log(users);
+//   console.log(users);
   return (
     <>
       <div className={css.usersGallery}>
