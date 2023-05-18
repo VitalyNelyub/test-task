@@ -8,11 +8,10 @@ import { nanoid } from 'nanoid';
 import { useState } from 'react';
 // import { updateUserFollowers } from '../../Service/fetchUsers';
 
-export default function UserItem({ users }) {
+export default function UserItem({ users, setUsers }) {
   const [followingIdUser, setFollowingIdUser] = useState([]);
-  // const [usersRating, setUsersRating] = useState([users]);
+  // const [filterUserByFollow, setFilterUserByFollow] = useState([]);
   console.log(followingIdUser);
-  console.log(users[0]);
 
   const handleUpdateFollow = id => {
     if (followingIdUser.includes(id)) {
@@ -24,12 +23,49 @@ export default function UserItem({ users }) {
     }
   };
 
-  const btnTest = () => {
-    // console.log((users[0].name = 'GOGA'));
-    // console.log(followers);
-    // const body = JSON.stringify({ followers: '151' });
-    // updateUserFollowers(id, body);
-    console.log('ЖМАК');
+   const btnTest = id => {
+    const find = users.find(user => user.id === id);
+
+    const updaterUserIncrement = {
+      id: find.id,
+      name: find.name,
+      followers: find.followers + 1,
+      twets: find.tweets,
+    };
+
+    const updaterUserDecrement = {
+      id: find.id,
+      name: find.name,
+      followers: find.followers - 1,
+      twets: find.tweets,
+    };
+
+    let updatedUsers;
+    if (followingIdUser.includes(id)) {
+      updatedUsers = users.map(user => {
+        if (user.id === updaterUserDecrement.id) {
+          return { ...user, ...updaterUserDecrement };
+        }
+        return user;
+      });
+    } else {
+      updatedUsers = users.map(user => {
+        if (user.id === updaterUserIncrement.id) {
+          return { ...user, ...updaterUserIncrement };
+        }
+        return user;
+      });
+    }
+
+    setUsers(updatedUsers);
+
+    const filteredUsers = users.filter(user =>
+      followingIdUser.includes(user.id)
+    );
+    console.log(find);
+    console.log(id);
+    handleUpdateFollow(id);
+    console.log(filteredUsers);
   };
 
   return users.map(user => (
@@ -44,7 +80,7 @@ export default function UserItem({ users }) {
         <p className={css.userRating}>{user.tweets} TWEETS</p>
         <p className={css.userRating}>{user.followers} FOLLOWERS</p>
         <button
-          onClick={() => handleUpdateFollow(user.id)}
+          // onClick={() => handleUpdateFollow(user.id)}
           onMouseDown={() => btnTest(user.id)}
           className={`${css.followBtn} ${
             followingIdUser.includes(user.id) ? css.following : ''
@@ -56,3 +92,19 @@ export default function UserItem({ users }) {
     </li>
   ));
 }
+
+//   const handleUpdateFollow = id => {
+//   if (followingIdUser.includes(id)) {
+//     setFollowingIdUser(prevUsers =>
+//       prevUsers.filter(userId => userId !== id)
+//     );
+//     // Отправить запрос на сервер для уменьшения значения фоловеров на 1
+//     const body = JSON.stringify({ followers: '777' });
+//     updateUserFollowers(id, body);
+//   } else {
+//     setFollowingIdUser(prevUsers => [...prevUsers, id]);
+//     // Отправить запрос на сервер для увеличения значения фоловеров на 1
+//     const body = JSON.stringify({ followers: '111', isFollowing: true });
+//     updateUserFollowers(id, body);
+//   }
+// };

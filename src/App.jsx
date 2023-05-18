@@ -30,10 +30,10 @@ function App() {
     setPage(prev => prev + 1);
     // console.log(page);
   };
-  
+
   return (
     <>
-      <UsersGallery users={users} />
+      <UsersGallery users={users} setUsers={setUsers} />
       <button onClick={loadMore}>LOAD MORE</button>
     </>
   );

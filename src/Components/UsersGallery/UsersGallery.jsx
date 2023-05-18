@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import UserItem from '../UserItem/UserItem';
 import css from '../UsersGallery/UsersGallery.module.css';
 
-export default function UsersGallery({ users }) {
+export default function UsersGallery({ users, setUsers }) {
     
 
 
@@ -10,7 +10,7 @@ export default function UsersGallery({ users }) {
   return (
     <>
       <div className={css.usersGallery}>
-        <UserItem users={users} />
+        <UserItem users={users} setUsers={setUsers}/>
       </div>
 
     </>
