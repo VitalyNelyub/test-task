@@ -9,36 +9,17 @@ import { useState } from 'react';
 export default function UserItem({ users, setUsers }) {
   const [followingIdUser, setFollowingIdUser] = useState([]);
 
-  // console.log(followingIdUser);
+  console.log(followingIdUser);
 
   const savedStorage = () => {
     localStorage.setItem('followingUserId', JSON.stringify(followingIdUser));
   };
 
   const parseLocal = JSON.parse(localStorage.getItem('followingUserId'));
-  // console.log(parseLocal.length);
+  console.log(parseLocal.length);
   savedStorage(followingIdUser);
 
-
-  const updaterUserIncrement = find => {
-    return {
-      id: find.id,
-      name: find.name,
-      followers: find.followers + 1,
-      tweets: find.tweets,
-    };
-  };
-
-  const updaterUserDecrement = find => {
-    return {
-      id: find.id,
-      name: find.name,
-      followers: find.followers - 1,
-      tweets: find.tweets,
-    };
-  };
-
-    const handleUpdateFollow = id => {
+  const handleUpdateFollow = id => {
     if (followingIdUser.includes(id)) {
       setFollowingIdUser(prevUsers =>
         prevUsers.filter(userId => userId !== id)
@@ -48,12 +29,22 @@ export default function UserItem({ users, setUsers }) {
     }
   };
 
-
-  const handleChancheFollowersCount = id => {
+  const handleChangeFollowersCount = id => {
     const find = users.find(user => user.id === id);
 
-    updaterUserDecrement(find);
-    updaterUserIncrement(find);
+    const updaterUserIncrement = {
+      id: find.id,
+      name: find.name,
+      followers: find.followers + 1,
+      tweets: find.tweets,
+    };
+
+    const updaterUserDecrement = {
+      id: find.id,
+      name: find.name,
+      followers: find.followers - 1,
+      tweets: find.tweets,
+    };
 
     let updatedUsers = {};
     if (followingIdUser.includes(id)) {
@@ -73,6 +64,14 @@ export default function UserItem({ users, setUsers }) {
     }
     setUsers(updatedUsers);
     handleUpdateFollow(id);
+
+    // const filteredUsers = users.filter(user =>
+    //   followingIdUser.includes(user.id)
+    // );
+    // console.log(find);
+    // console.log(id);
+
+    // console.log(filteredUsers);
   };
 
   return users.map(user => (
@@ -87,8 +86,7 @@ export default function UserItem({ users, setUsers }) {
         <p className={css.userRating}>{user.tweets} TWEETS</p>
         <p className={css.userRating}>{user.followers} FOLLOWERS</p>
         <button
-          // onClick={() => handleUpdateFollow(user.id)}
-          onMouseDown={() => handleChancheFollowersCount(user.id)}
+          onClick={() => handleChangeFollowersCount(user.id)}
           className={`${css.followBtn} ${
             followingIdUser.includes(user.id) ? css.following : ''
           }`}
@@ -105,12 +103,10 @@ export default function UserItem({ users, setUsers }) {
 //     setFollowingIdUser(prevUsers =>
 //       prevUsers.filter(userId => userId !== id)
 //     );
-
 //     const body = JSON.stringify({ followers: '777' });
 //     updateUserFollowers(id, body);
 //   } else {
 //     setFollowingIdUser(prevUsers => [...prevUsers, id]);
-
 //     const body = JSON.stringify({ followers: '111', isFollowing: true });
 //     updateUserFollowers(id, body);
 //   }
