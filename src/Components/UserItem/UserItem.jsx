@@ -3,12 +3,16 @@ import goit from './Images/Logo.png';
 import centerLine from './Images/Rectangle.png';
 import avatar from './Images/Boy.png';
 import bgCard from './Images/bg-card.png';
+
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
+// import { updateUserFollowers } from '../../Service/fetchUsers';
 
 export default function UserItem({ users }) {
   const [followingIdUser, setFollowingIdUser] = useState([]);
+  // const [usersRating, setUsersRating] = useState([users]);
   console.log(followingIdUser);
+  console.log(users[0]);
 
   const handleUpdateFollow = id => {
     if (followingIdUser.includes(id)) {
@@ -20,8 +24,11 @@ export default function UserItem({ users }) {
     }
   };
 
-  const btnTest = followers => {
-    console.log(followers);
+  const btnTest = () => {
+    // console.log((users[0].name = 'GOGA'));
+    // console.log(followers);
+    // const body = JSON.stringify({ followers: '151' });
+    // updateUserFollowers(id, body);
     console.log('ЖМАК');
   };
 
@@ -38,7 +45,7 @@ export default function UserItem({ users }) {
         <p className={css.userRating}>{user.followers} FOLLOWERS</p>
         <button
           onClick={() => handleUpdateFollow(user.id)}
-          onMouseDown={btnTest(user.followers)}
+          onMouseDown={() => btnTest(user.id)}
           className={`${css.followBtn} ${
             followingIdUser.includes(user.id) ? css.following : ''
           }`}

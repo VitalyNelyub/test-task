@@ -30,6 +30,7 @@ function App() {
     setPage(prev => prev + 1);
     // console.log(page);
   };
+  
   return (
     <>
       <UsersGallery users={users} />

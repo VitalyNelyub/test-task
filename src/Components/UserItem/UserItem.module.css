@@ -15,20 +15,26 @@ p {
   position: relative;
 }
 
-.userItem:hover .logo {
-  transform: rotateY(360deg);
-}
 .logo {
   position: absolute;
   top: 20px;
   left: 20px;
-  transition: transform 1s;
+  transition: transform 1000ms;
+}
+
+.userItem:hover .logo {
+  transform: rotateY(360deg);
 }
 
 .bgCard {
   position: absolute;
   top: 28px;
   left: 36px;
+  transition: transform 1000ms;
+}
+
+.userItem:hover .bgCard {
+  transform: scale(1.1);
 }
 
 .centerLine {
@@ -56,8 +62,14 @@ p {
   font-size: 22px;
   line-height: 24px;
   font-weight: 600;
-  color: #373737;
+  /* color: #373737; */
+  color: #5cd3a8;
   margin-bottom: 10px;
+  transition: transform 500ms;
+}
+
+.userItem:hover .userName {
+  transform: scale(1.4);
 }
 
 .userPhoto {

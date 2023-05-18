@@ -13,3 +13,15 @@ export default async function getUsers(page) {
     console.error('error');
   }
 }
+
+// export const updateUserFollowers = async (id, body) => {
+//   try {
+//     console.log('BODY =', body);
+//     return await axios.put(
+//       `https://6463ed7b127ad0b8f8947a58.mockapi.io/users${id}`,
+//       body
+//     );
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
