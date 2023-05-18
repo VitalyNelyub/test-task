@@ -95,20 +95,24 @@ p {
   height: 50px;
   border-radius: 10px;
   margin-top: 10px;
-  /* outline: none;
-  border: none; */
   background-color: #ebd8ff;
   font-family: Montserrat;
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
   color: #373737;
+  transition: all 500ms;
+}
+
+.followBtn:hover {
+  font-size: px;
+  outline: 4px solid rgb(8, 202, 8);
 }
 
 .following {
   background-color: #5cd3a8;
 }
 
-/* .followBtn:hover {
-  border: 3px solid lime;
-} */
+.following:hover {
+  outline: 4px solid rgb(222, 12, 12);
+}

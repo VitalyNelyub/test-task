@@ -1,18 +1,25 @@
 .usersGallery {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 28px;
 }
 
-.loadMoreBtn {
+.loadMore {
   margin-top: 40px;
   width: 176px;
   height: 50px;
   border-radius: 10px;
-  background-color: #ebd8ff;
+  border: 2px solid #ebd8ff;
+  background: linear-gradient(90deg, #471ca9 0%, #5736a3 69.1%, #4b2a99 100%);
   font-family: Montserrat;
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
-  color: #373737;
+  color: #ebd8ff;
+  transition: all 500ms;
+}
+
+.loadMore:hover {
+  font-size: 20px;
 }

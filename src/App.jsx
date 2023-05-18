@@ -2,35 +2,47 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import getUsers from './Service/fetchUsers';
 import UsersGallery from './Components/UsersGallery/UsersGallery';
-// import UsersGallery from './Components/UserItem/UserItem';
+import Swal from 'sweetalert2';
+import Loader from './Components/Loader/Loader';
+import css from './Components/UsersGallery/UsersGallery.module.css'
 
 function App() {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
-  // const [localTest, setLocalTest] = useState([]);
-  // console.log(users);
-
-  // const localIdUsers = JSON.parse(localStorage.getItem('followingUserId'));
-
-  // useEffect(() => {
-  //   if (localIdUsers.length > 0) setLocalTest(localIdUsers);
-  // }, [localIdUsers]);
+  const [showBtn, setShowBtn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (page) {
       if (page === 1) {
+        setIsLoading(false);
         getUsers(page).then(data => setUsers(data));
+
+        setShowBtn(true);
       } else {
         // console.log('fetch');
-        getUsers(page).then(data =>
-          setUsers(prevUsers => [...prevUsers, ...data])
-        );
+        getUsers(page).then(data => {
+          if (data.length > 0) {
+            setUsers(prevUsers => [...prevUsers, ...data]);
+          } else {
+            setIsLoading(false);
+            setShowBtn(false);
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Sorry, no more users',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
       }
     } else {
       console.log('exit');
     }
   }, [page]);
   // console.log(users);
+  
 
   const loadMore = () => {
     // console.log(e);
@@ -40,8 +52,12 @@ function App() {
 
   return (
     <>
-      <UsersGallery users={users} setUsers={setUsers} />
-      <button onClick={loadMore}>LOAD MORE</button>
+      {!isLoading ? (
+        <UsersGallery users={users} setUsers={setUsers} />
+      ) : (
+        <Loader />
+      )}
+      {showBtn && <button onClick={loadMore} className={css.loadMore }>LOAD MORE</button>}
     </>
   );
 }

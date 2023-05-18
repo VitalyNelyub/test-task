@@ -1,23 +1,26 @@
 import css from '../UserItem/UserItem.module.css';
-import goit from './Images/Logo.png';
+import goItLogo from './Images/Logo.png';
 import centerLine from './Images/Rectangle.png';
 import avatar from './Images/Boy.png';
 import bgCard from './Images/bg-card.png';
 import { nanoid } from 'nanoid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { updateUserFollowersApi } from '../../Service/fetchUsers';
 
 export default function UserItem({ users, setUsers }) {
-  const [followingIdUser, setFollowingIdUser] = useState([]);
+  
+  const [followingIdUser, setFollowingIdUser] = useState(() => {
+    const storedFollowingIdUser =
+      JSON.parse(localStorage.getItem('followingUserId')) || [];
+    return storedFollowingIdUser;
+  });
 
-  console.log(followingIdUser);
-
-  const savedStorage = () => {
-    localStorage.setItem('followingUserId', JSON.stringify(followingIdUser));
-  };
-
-  const parseLocal = JSON.parse(localStorage.getItem('followingUserId'));
-  console.log(parseLocal.length);
-  savedStorage(followingIdUser);
+  useEffect(() => {
+    const savedStorage = () => {
+      localStorage.setItem('followingUserId', JSON.stringify(followingIdUser));
+    };
+    savedStorage();
+  }, [followingIdUser]);
 
   const handleUpdateFollow = id => {
     if (followingIdUser.includes(id)) {
@@ -30,53 +33,31 @@ export default function UserItem({ users, setUsers }) {
   };
 
   const handleChangeFollowersCount = id => {
-    const find = users.find(user => user.id === id);
+    const findCurrentUser = users.find(user => user.id === id);
 
-    const updaterUserIncrement = {
-      id: find.id,
-      name: find.name,
-      followers: find.followers + 1,
-      tweets: find.tweets,
+    const updatedFollowersCount = followingIdUser.includes(id)
+      ? findCurrentUser.followers - 1
+      : findCurrentUser.followers + 1;
+
+    const updatedUser = {
+      ...findCurrentUser,
+      followers: updatedFollowersCount,
     };
 
-    const updaterUserDecrement = {
-      id: find.id,
-      name: find.name,
-      followers: find.followers - 1,
-      tweets: find.tweets,
-    };
+    const updatedUsers = users.map(user =>
+      user.id === id ? updatedUser : user
+    );
 
-    let updatedUsers = {};
-    if (followingIdUser.includes(id)) {
-      updatedUsers = users.map(user => {
-        if (user.id === updaterUserDecrement.id) {
-          return { ...user, ...updaterUserDecrement };
-        }
-        return user;
-      });
-    } else {
-      updatedUsers = users.map(user => {
-        if (user.id === updaterUserIncrement.id) {
-          return { ...user, ...updaterUserIncrement };
-        }
-        return user;
-      });
-    }
     setUsers(updatedUsers);
     handleUpdateFollow(id);
 
-    // const filteredUsers = users.filter(user =>
-    //   followingIdUser.includes(user.id)
-    // );
-    // console.log(find);
-    // console.log(id);
-
-    // console.log(filteredUsers);
+    const body = JSON.stringify({ followers: updatedFollowersCount });
+    updateUserFollowersApi(id, body);
   };
 
   return users.map(user => (
     <li key={nanoid()} className={css.userItem}>
-      <img src={goit} className={css.logo} />
+      <img src={goItLogo} className={css.logo} />
       <img src={centerLine} className={css.centerLine} />
       <img src={avatar} className={css.avatar} />
       <img src={bgCard} className={css.bgCard} />
@@ -84,7 +65,9 @@ export default function UserItem({ users, setUsers }) {
       <div className={css.userInfo}>
         <h1 className={css.userName}>{user.name}</h1>
         <p className={css.userRating}>{user.tweets} TWEETS</p>
-        <p className={css.userRating}>{user.followers} FOLLOWERS</p>
+        <p className={css.userRating}>
+          {user.followers.toLocaleString('ja-JP')} FOLLOWERS
+        </p>
         <button
           onClick={() => handleChangeFollowersCount(user.id)}
           className={`${css.followBtn} ${
@@ -97,17 +80,3 @@ export default function UserItem({ users, setUsers }) {
     </li>
   ));
 }
-
-//   const handleUpdateFollow = id => {
-//   if (followingIdUser.includes(id)) {
-//     setFollowingIdUser(prevUsers =>
-//       prevUsers.filter(userId => userId !== id)
-//     );
-//     const body = JSON.stringify({ followers: '777' });
-//     updateUserFollowers(id, body);
-//   } else {
-//     setFollowingIdUser(prevUsers => [...prevUsers, id]);
-//     const body = JSON.stringify({ followers: '111', isFollowing: true });
-//     updateUserFollowers(id, body);
-//   }
-// };

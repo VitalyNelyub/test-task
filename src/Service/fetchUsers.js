@@ -3,8 +3,7 @@ import axios from 'axios';
 export default async function getUsers(page) {
   const url = new URL('https://6463ed7b127ad0b8f8947a58.mockapi.io/users');
   url.searchParams.append('page', `${page}`);
-  url.searchParams.append('limit', 3);
-
+  url.searchParams.append('limit', 6);
   try {
     const res = await axios.get(url);
     const data = res.data;
@@ -14,9 +13,8 @@ export default async function getUsers(page) {
   }
 }
 
-export const updateUserFollowers = async (id, body) => {
+export const updateUserFollowersApi = async (id, body) => {
   try {
-    console.log('BODY =', body);
     return await axios.put(
       `https://6463ed7b127ad0b8f8947a58.mockapi.io/users/${id}`,
       body,
