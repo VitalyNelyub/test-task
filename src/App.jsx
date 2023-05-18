@@ -7,7 +7,14 @@ import UsersGallery from './Components/UsersGallery/UsersGallery';
 function App() {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
-  // console.log(users.length);
+  // const [localTest, setLocalTest] = useState([]);
+  // console.log(users);
+
+  // const localIdUsers = JSON.parse(localStorage.getItem('followingUserId'));
+
+  // useEffect(() => {
+  //   if (localIdUsers.length > 0) setLocalTest(localIdUsers);
+  // }, [localIdUsers]);
 
   useEffect(() => {
     if (page) {
