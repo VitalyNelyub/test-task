@@ -1,0 +1,14 @@
+.notFoundTitle {
+  font-size: 42px;
+  margin-bottom: 30px;
+  transition: all 500ms;
+}
+
+.notFoundLink {
+      font-size: 22px;
+  transition: all 500ms;
+}
+
+.notFoundLink:hover {
+     color: red;
+}
