@@ -13,6 +13,7 @@ p {
   background: linear-gradient(90deg, #471ca9 0%, #5736a3 69.1%, #4b2a99 100%);
   border-radius: 20px;
   position: relative;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
 }
 
 .logo {

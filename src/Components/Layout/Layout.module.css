@@ -1,0 +1,30 @@
+.header {
+background-color: rgb(227, 126, 11);
+height: 80px;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 20px;
+box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+}
+
+.headerList {
+display: flex;
+gap: 200px;
+justify-content: center;
+align-items: center;
+
+}
+
+.headerLink {
+font-size: 32px;
+font-weight: 700;
+color: #213547;
+transition: all 500ms;
+}
+
+.headerLink:hover {
+transform: scale(1.2);
+color: red;
+}
+

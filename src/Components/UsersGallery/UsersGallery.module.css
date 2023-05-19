@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 28px;
+  margin-top: 40px;
 }
 
 .loadMore {
@@ -17,9 +18,23 @@
   line-height: 24px;
   font-weight: 600;
   color: #ebd8ff;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   transition: all 500ms;
 }
 
 .loadMore:hover {
   font-size: 20px;
+}
+
+.tweetsPage {
+  padding-top: 40px;
+}
+
+.backHomeLink {
+  font-size: 22px;
+  transition: all 500ms;
+}
+
+.backHomeLink:hover {
+  color: red;
 }
