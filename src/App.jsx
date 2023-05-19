@@ -4,8 +4,6 @@ import Home from './Components/Home/Home';
 import Layout from './Components/Layout/Layout';
 import Tweets from './Components/Tweets/Tweets';
 import NotFound from './Components/NotFound/NotFound.jsx';
-// import NotFound from './Components/NotFound/NotFound.js';
-// import NotFound from './Components/NotFound/NotFound';
 
 function App() {
   return (
@@ -14,7 +12,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/tweets" element={<Tweets />} />
       </Route>
-      <Route path="*" element={<NotFound />} />
+      <Route path="/*" element={<NotFound />} />
     </Routes>
   );
 }
