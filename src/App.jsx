@@ -3,7 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import Layout from './Components/Layout/Layout';
 import Tweets from './Components/Tweets/Tweets';
-import NotFound from './Components/NotFound/NotFound';
+import NotFound from './Components/NotFound/NotFound.jsx';
+// import NotFound from './Components/NotFound/NotFound';
 
 function App() {
   return (
