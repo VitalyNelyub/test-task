@@ -3,7 +3,6 @@ import UserItem from '../UserItem/UserItem';
 import css from '../UsersGallery/UsersGallery.module.css';
 
 export default function UsersGallery({ users, setUsers }) {
-  //   console.log(users);
   return (
     <>
       <div className={css.usersGallery}>

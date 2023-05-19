@@ -5,10 +5,10 @@
 }
 
 .notFoundLink {
-      font-size: 22px;
+  font-size: 26px;
   transition: all 500ms;
 }
 
 .notFoundLink:hover {
-     color: red;
+  color: red;
 }

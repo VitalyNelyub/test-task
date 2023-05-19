@@ -6,9 +6,9 @@ import bgCard from './Images/bg-card.png';
 import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { updateUserFollowersApi } from '../../Service/fetchUsers';
+import PropTypes from 'prop-types';
 
 export default function UserItem({ users, setUsers }) {
-  
   const [followingIdUser, setFollowingIdUser] = useState(() => {
     const storedFollowingIdUser =
       JSON.parse(localStorage.getItem('followingUserId')) || [];
@@ -80,3 +80,8 @@ export default function UserItem({ users, setUsers }) {
     </li>
   ));
 }
+
+UserItem.propTypes = {
+  users: PropTypes.array,
+  setUsers: PropTypes.func,
+};

@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import getUsers from "../../Service/fetchUsers";
-import Swal from "sweetalert2";
-import UsersGallery from "../UsersGallery/UsersGallery";
-import Loader from "../Loader/Loader";
+import { useEffect, useState } from 'react';
+import getUsers from '../../Service/fetchUsers';
+import Swal from 'sweetalert2';
+import UsersGallery from '../UsersGallery/UsersGallery';
+import Loader from '../Loader/Loader';
 import css from '../UsersGallery/UsersGallery.module.css';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Tweets() {
-      const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [showBtn, setShowBtn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +20,6 @@ export default function Tweets() {
 
         setShowBtn(true);
       } else {
-        // console.log('fetch');
         getUsers(page).then(data => {
           if (data.length > 0) {
             setUsers(prevUsers => [...prevUsers, ...data]);
@@ -38,19 +37,19 @@ export default function Tweets() {
         });
       }
     } else {
-      console.log('exit');
+      console.log('error');
     }
   }, [page]);
-  // console.log(users);
 
   const loadMore = () => {
-    // console.log(e);
     setPage(prev => prev + 1);
-    // console.log(page);
-  };
+    };
+    
   return (
     <div className={css.tweetsPage}>
-      <Link  className={css.backHomeLink} to={'/'}>BACK TO HOME PAGE</Link>
+      <Link className={css.backHomeLink} to={'/'}>
+        BACK TO HOME PAGE
+      </Link>
       {!isLoading ? (
         <UsersGallery users={users} setUsers={setUsers} />
       ) : (

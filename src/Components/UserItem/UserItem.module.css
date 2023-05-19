@@ -54,16 +54,12 @@ p {
   position: absolute;
   top: 264px;
   left: 90px;
-  /* display: flex; */
-  /* flex-direction: column; */
 }
 
 .userName {
-  /* font-family: Montserrat; */
   font-size: 22px;
   line-height: 24px;
   font-weight: 600;
-  /* color: #373737; */
   color: #5cd3a8;
   margin-bottom: 10px;
   transition: transform 500ms;
@@ -83,7 +79,6 @@ p {
 }
 
 .userRating {
-  /* font-family: Montserrat; */
   font-size: 20px;
   line-height: 24px;
   font-weight: 500;
@@ -97,7 +92,6 @@ p {
   border-radius: 10px;
   margin-top: 10px;
   background-color: #ebd8ff;
-  /* font-family: Montserrat; */
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;

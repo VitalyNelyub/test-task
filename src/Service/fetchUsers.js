@@ -9,7 +9,8 @@ export default async function getUsers(page) {
     const data = res.data;
     return data;
   } catch (error) {
-    console.error('error');
+    alert('ERROR');
+    console.error(error);
   }
 }
 
@@ -25,6 +26,7 @@ export const updateUserFollowersApi = async (id, body) => {
       }
     );
   } catch (error) {
+      alert('ERROR');
     console.log(error);
   }
 };
