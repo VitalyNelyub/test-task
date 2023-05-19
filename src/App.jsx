@@ -10,9 +10,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/tweets" element={<Tweets />} />
+        <Route path="tweets" element={<Tweets />} />
       </Route>
-      <Route path="/*" element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
